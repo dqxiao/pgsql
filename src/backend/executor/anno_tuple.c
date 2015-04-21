@@ -50,7 +50,7 @@ find_s_attribute(char *src,char *attribute_name){
 void
 init_Anno_table(Anno temp,char *src){
 
-    temp->content->ID=find_g_attribute(src, "id");
+    temp->content->rID=find_g_attribute(src, "id");
     temp->content->author=find_g_attribute(src, "author");
     temp->content->value=find_g_attribute(src, "value");
     temp->content->timestamp=find_g_attribute(src, "timestamp");
@@ -126,7 +126,7 @@ init_Anno(Anno an,char *src){
 	//char * tempsrc;
 	/*
 	an->content=(Anno_table)malloc(sizeof(Anno_table));
-	an->content->ID=(char *)NULL;
+	an->content->rID=(char *)NULL;
 	an->content->author=(char *)NULL;
 	an->content->timestamp=(char *)NULL;
 	an->content->value=(char *)NULL;
@@ -146,14 +146,14 @@ init_Anno(Anno an,char *src){
 
 
     init_Anno_table(an,src);
-    //elog(INFO,"1: content->ID:%s",an->content->ID);
+    //elog(INFO,"1: content->rID:%s",an->content->rID);
     //elog(INFO,"1:content->author:%s",an->content->author);
     //elog(INFO,"1:content->value:%s",an->content->value);
 
 
     init_Data_anno(an,src);
     //elog(INFO,"Data_anno->tuple_columns:%s",an->desc->tuple_columns);
-    //elog(INFO,"2:content->ID:%s",an->content->ID);
+    //elog(INFO,"2:content->rID:%s",an->content->rID);
     //elog(INFO,"2:content->author:%s",an->content->author);
     //elog(INFO,"2:content->value:%s",an->content->value);
 
@@ -163,7 +163,7 @@ init_Anno(Anno an,char *src){
     an->a_sm_r_list=init_A_sm_r_list(an->a_sm_r_list,resdes);
 
     //elog(INFO,"asmr_list_length:%d",list_length(an->a_sm_r_list));
-    //elog(INFO,"3:anno_table->ID:%s",an->content->ID);
+    //elog(INFO,"3:anno_table->rID:%s",an->content->rID);
     //elog(INFO,"an->desc->tuple_columns:%s",an->desc->tuple_columns);
     //elog(INFO,"resdes:%s",an->resdes);
 }
@@ -203,7 +203,7 @@ init_anno_list(Summary_tuple st,char *src){
 
     	an->content=(Anno_table)malloc(sizeof(Anno_table_data));
     	/*
-    	an->content->ID=(char *)NULL;
+    	an->content->rID=(char *)NULL;
 		an->content->author=(char *)NULL;
 		an->content->timestamp=(char *)NULL;
 		an->content->value=(char *)NULL;
@@ -441,13 +441,13 @@ init_reps_from_anno_list(Summary_tuple st){
             	        temp_srep->summary_type="unknown";
             	    }
 
-                Add_temp_srep(temp_srep,sasmr->result,s_an->content->ID);
+                Add_temp_srep(temp_srep,sasmr->result,s_an->content->rID);
                 st->reps=lappend(st->reps,temp_srep);
 
             }
             else
             {
-                Add_temp_srep(found_srep,sasmr->result,s_an->content->ID);
+                Add_temp_srep(found_srep,sasmr->result,s_an->content->rID);
             }
 
         }
@@ -517,7 +517,7 @@ travel_summary(Summary_tuple st){
 	        //printf("travel:desc->tuple_columns_list:%d\n",list_length(sanno->desc->tuple_column_list));
 	        printf("travel:a_smr_list_length:%d \n",list_length(sanno->a_sm_r_list));
 
-	        printf("travel:content->ID :%s \n",sanno->content->ID);
+	        printf("travel:content->rID :%s \n",sanno->content->rID);
 
 	        foreach(asrlf,sanno->a_sm_r_list){
 	        	A_sm_r asmr=(A_sm_r) lfirst(asrlf);
@@ -648,11 +648,11 @@ fillsummary(Summary_tuple st){
 
 	 foreach(lf,anno_list){
 		 Anno an=(Anno) lfirst(lf);
-		 char * idstr=an->content->ID;
+		 char * idstr=an->content->rID;
 
 		 an->a_sm_r_list=searchHash(idstr);
 
-		 //printf("search key value annotable->ID:%s \n",an->content->ID);
+		 //printf("search key value annotable->rID:%s \n",an->content->rID);
 		 /*
 		 printf("search key value annotabel->author: %s \n",an->content->author);
 		*/

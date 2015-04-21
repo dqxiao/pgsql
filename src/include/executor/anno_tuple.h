@@ -27,7 +27,7 @@ typedef A_sm_r_data * A_sm_r;
  * annotation_table data structure
  */
 typedef struct Anno_table_data{
-    char * ID;
+    char * rID;
     char * value;
     char * timestamp;
     char * author;/*all in same table,ID is primary key */
